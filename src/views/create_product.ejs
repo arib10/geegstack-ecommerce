@@ -1,0 +1,61 @@
+<%- include("./layout/header") %>
+    <main class="product-details">
+        <h2>Add Product</h2>
+        <p class="error"><%= error %></p>
+        <div class="form-container">
+            <form action="/products" method="post">
+                <div>
+                    <label for="name">
+                        <p>Product Name</p>
+                    </label>
+                    <input type="text" name="name" id="" value="<%= form[0]?.name %>">
+                </div>
+                <div>
+                    <label for="price">
+                        <p>Product Price</p>
+                    </label>
+                    <input type="number" name="price" value="<%= form[0]?.price %>">
+                </div>
+                <div>
+                    <label for="description">
+                        <p>Product Description</p>
+                    </label>
+                    <textarea name="description" id="" cols="30" rows="10"><%= form[0]?.description %></textarea>
+                </div>
+                <div>
+                    <label for="image">
+                        <p>Product Image URL</p>
+                    </label>
+                    <input type="string" name="image" id="" value="<%= form[0]?.image %>">
+                </div>
+                <div>
+                    <label for="category">
+                        <p>Product category</p>
+                    </label>
+                    <select name="category" id="">
+                        <option value="Accessories"
+                        <% if (form[0]?.category && form[0].category === 'Accessories') {%>
+                            selected
+                        <% } %>
+                         >Accessories</option>
+
+                        <option value="Apparel" 
+                        <% if (form[0]?.category && form[0].category === 'Apparel') {%>
+                            selected
+                        <% } %>
+                        
+                        > Apparel</option>
+
+                        <option value="Bags"
+                        <% if (form[0]?.category && form[0].category === 'Bags') {%>
+                            selected
+                        <% } %>
+                        
+                        >Bags</option>
+                    </select>
+                </div>
+                <input type="submit" value="Create Product">
+            </form>
+        </div>
+    </main>
+<%- include("./layout/footer") %>

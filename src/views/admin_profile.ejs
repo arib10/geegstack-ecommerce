@@ -1,0 +1,36 @@
+
+<%- include("./layout/header") %>
+    <main class="product-details">
+        <h2>Welcome back, <%= profile.firstName %> <%= profile.lastName %>.</h2>
+        <div class="flex">
+            <a href="/products/new">
+                <button class="price">Add Product</button>
+            </a>
+            &nbsp; &nbsp;
+            <form 
+            action="/admin/logout" 
+            method="post" 
+            onsubmit="return confirm('Are you sure you want to logout?')"
+            >
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+        <hr>
+
+        <h2>My products</h2>
+        <section class="admin-products flex">
+        <% products.forEach(function(product, index) { %>
+            <article class="product">
+                <img src="<%= product.imageUrl %>" alt="">
+                <h3><%= product.name %></h3>
+                <div class="flex">
+                    <p class="price"><%= product.price %></p>
+                    <p class="category"><%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %></p>
+                </div>
+                <a href="/products/<%= product._id %>">View product</a>
+            </article>
+        <% }) %>
+        </section>
+     
+    </main>
+<%- include("./layout/footer") %>

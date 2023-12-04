@@ -1,0 +1,21 @@
+
+<%- include("./layout/header") %>
+    <main class="product-details">
+        <img src="<%= product.imageUrl %>" alt="Product" />
+        <h2><%= product.name %></h2>
+        <p class="price">NGN<%= product.price %></p>
+        <p class="desc"><%= product.description %></p>
+        <p class="category"><%= product.category.slice(0,1).toUpperCase() + product.category.slice(1) %></p>
+
+        <% if (admin && admin.length > 0) { %>
+            <a href="/products/<%= product._id %>/edit">Edit product</a>
+            <form 
+            action="/products/<%= product._id %>?_method=DELETE" 
+            method="post" 
+            onsubmit="return confirm('Are you sure you want to delete product?')"
+            >
+                <button type="submit">Delete Product</button>
+            </form>
+        <% } %>
+    </main>
+<%- include("./layout/footer") %>
